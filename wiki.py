@@ -6,8 +6,9 @@ import os
 import argparse
 import random
 
+
 def search_wikipedia(arguments):
-    
+
     import wikipedia
     wikipedia.set_lang("pt")
 
@@ -21,11 +22,11 @@ def search_wikipedia(arguments):
         print("\033[31mNão há pesquisa correspondente na Wikipedia\033[m")
 
     except wikipedia.exceptions.DisambiguationError:
-        
+
         os.system("clear")
         pages = wikipedia.search(arguments.pesquisa)
 
-        print(f"{arguments.pesquisa} pode se referir a: ")
+        print(f'{arguments.pesquisa} pode se referir a: ')
 
         for i, topic in enumerate(pages):
             print(i, topic)
@@ -46,10 +47,11 @@ def verification_module_wikipedia():
         print("\033[31minstalando modulo wikipedia\033[m")
         subprocess.check_call(
             [sys.executable, "-m", "pip", "install", "wikipedia"])
-        
-        #reparo temporario ate atualizacao no modulo estar disponivel no Pypl
+
+        # reparo temporario ate atualizacao no modulo estar disponivel no Pypl
         os.system(
             "python3 -m pip install --upgrade git+git://github.com/goldsmith/Wikipedia.git")
+
 
 def configure_agparse():
     parser = argparse.ArgumentParser(
