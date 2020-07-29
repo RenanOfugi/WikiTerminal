@@ -37,22 +37,6 @@ def search_wikipedia(arguments):
         result = wikipedia.summary(pages[choice])
         print("\n\n"+"\033[33m"+result+"\033[m")
 
-
-def verification_module_wikipedia():
-
-    try:
-        pkg_resources.get_distribution("wikipedia")
-
-    except pkg_resources.DistributionNotFound:
-        print("\033[31minstalando modulo wikipedia\033[m")
-        subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "wikipedia"])
-
-        # reparo temporario ate atualizacao no modulo estar disponivel no Pypl
-        os.system(
-            "python3 -m pip install --upgrade git+git://github.com/goldsmith/Wikipedia.git")
-
-
 def configure_agparse():
     parser = argparse.ArgumentParser(
         description="Um programa de pesquisa na Wikipedia pelo terminal")
@@ -64,7 +48,6 @@ def configure_agparse():
 
 def main():
     arguments = configure_agparse()
-    verification_module_wikipedia()
     search_wikipedia(arguments)
 
 
